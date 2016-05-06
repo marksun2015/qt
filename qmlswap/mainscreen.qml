@@ -1,7 +1,7 @@
 import QtQuick 2.0  
 
 Rectangle {  
-id: root  
+		id: root  
 		width: 600  
 		height: 400  
 		property int speed: 0  
@@ -40,7 +40,7 @@ id: root
 
 		Text {  
 			anchors.centerIn: parent  
-			text: "Book"  
+			text: "Analog"  
 		}  
 
 		MouseArea {  
@@ -62,7 +62,7 @@ id: root
 
 		Text {  
 			anchors.centerIn: parent  
-			text: "Pencil"  
+			text: "Digital"  
 		}  
 
 		MouseArea {  

@@ -3,9 +3,9 @@ import QtQuick.Window 2.1
 
 Text {  
 	id: text1 
-	text: "pencil";
+	text: "Digital";
 	font.family:"Arial";
-	font.pointSize:24;
+	font.pointSize:36;
 	color:"red"
 } 
 
