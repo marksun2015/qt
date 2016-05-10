@@ -6,8 +6,8 @@ TEMPLATE = app
 TARGET = item
 INCLUDEPATH += .
 
-QT += core gui network opengl qml quick svg xml widgets dbus testlib declarative
-#QT += core gui network opengl qml quick svg xml widgets dbus testlib
+#QT += core gui network opengl qml quick svg xml widgets dbus testlib declarative
+QT += core gui network opengl qml quick svg xml widgets dbus testlib
 
 CONFIG += debug 
 
@@ -17,10 +17,6 @@ CONFIG += thread
 CONFIG += c++11
 CONFIG += static
 
-#LIBS += qmlapplicationviewer.o clicksimulator.o
-
-#OBJECTS_DIR = .
-
 # Input
-HEADERS += clicksimulator.h qmlapplicationviewer.h
-SOURCES += main.cpp clicksimulator.cpp qmlapplicationviewer.cpp  
+HEADERS += clicksimulator.h
+SOURCES += main.cpp clicksimulator.cpp

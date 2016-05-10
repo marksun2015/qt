@@ -1,7 +1,3 @@
-#if !defined(WIN32)
-#   include <signal.h>
-#endif
-
 #include <string>
 
 #pragma warning(disable: 4512)
@@ -21,7 +17,10 @@
 #include <QObject>
 
 #include <QFile>
-#include "qmlapplicationviewer.h"
+
+#include <QGraphicsSceneMouseEvent>
+#include <QApplication>
+#include <QGraphicsScene>
 #include "clicksimulator.h"
 
 #pragma warning(default: 4512)
@@ -30,18 +29,18 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-	QmlApplicationViewer viewer;
-	viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-	viewer.setMainQmlFile(QLatin1String("main.qml"));
-	//viewer.showMaximized();
+	QQuickView *view=new QQuickView(); 
+	view->setSource(QUrl("main.qml"));
+	view->setSurfaceType(QSurface::OpenGLSurface);
+	view->rootObject()->setSize(QSizeF(1024, 600));
 
-	ClickSimulator sim(&viewer);
-	QTimer timer;
-	sim.connect(&timer, SIGNAL(timeout()), SLOT(click()));
-	timer.start(1000);
-		 
-    viewer.show();
+	ClickSimulator *sim = new ClickSimulator();
+	QTimer *timer=new QTimer();
+	sim->m_viewer=view;
+	QObject::connect(timer,SIGNAL(timeout()),sim,SLOT(click())); 
+	timer->start(0);
+
+    view->show();
     return app.exec();
 }
 
-#include "main.moc"

@@ -1,4 +1,4 @@
-import QtQuick 1.0
+import QtQuick 2.0
 
 Rectangle {
 	width: 360
@@ -13,8 +13,8 @@ Rectangle {
 		anchors.fill: parent
 		onClicked: {
 			console.log("click at " + mouse.x + ", " + mouse.y);
-			text1.pos.x = mouse.x;
-			text1.pos.y = mouse.y;
+			text1.x = mouse.x;
+			text1.y = mouse.y;
 		}
 	}
 }
