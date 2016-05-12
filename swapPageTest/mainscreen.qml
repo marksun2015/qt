@@ -28,8 +28,7 @@ Rectangle {
 		anchors.bottom: page1Button.top  
 
 		onLoaded: {  
-			//!console.log("---onloaded----");
-			cpurate.myPrty=1;
+			swappage.myPrty=1;
 			binder.target = dialLoader.item;  
 		}  
 	} 
@@ -43,8 +42,8 @@ Rectangle {
 	MouseArea {  
 			anchors.fill: parent  
 			onClicked: {
-				//! console.log("qml onClicked");
-				//! console.log(mouse.x);
+				//!console.log("qml onClicked");
+				//!console.log(mouse.x);
 				if((mouse.x == 0) && (mouse.y == 1)){
 					root.state = "textpage1";  
 				}else if((mouse.x == 1) && (mouse.y == 1)){
@@ -63,10 +62,8 @@ Rectangle {
 					root.state = "pngpage2";  
 				}else if((mouse.x == 2) && (mouse.y == 3)){
 					root.state = "pngpage3";  
-				}
-
-				if((mouse.x == 0) && (mouse.y == 0)){
-					rate.text = cpurate.totaltime
+				}else if((mouse.x == 0) && (mouse.y == 0)){
+					rate.text = swappage.totaltime
 				}
 			}
 	}  
@@ -89,8 +86,6 @@ Rectangle {
 			anchors.fill: parent  
 			onClicked: {
 				root.state = "pngpage1";  
-				//!console.log(mouse.x);
-				//!console.log(mouse.y);
 			}
 		}  
 	}  
@@ -116,8 +111,6 @@ Rectangle {
 			anchors.fill: parent  
 			onClicked: {
 				root.state = "svgpage2";  
-				//!console.log(mouse.x);
-				//!console.log(mouse.y);
 			}
 		}  
 	}  
@@ -143,13 +136,11 @@ Rectangle {
 			anchors.fill: parent  
 			onClicked: {
 				root.state = "textpage3";  
-				//!console.log(mouse.x);
-				//!console.log(mouse.y);
 			}
 		}  
 	} 
 
-	state: "textpage1"  
+	state: "textpage2"  
 
 	states: [  
 		State {  

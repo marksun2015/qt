@@ -16,9 +16,9 @@ Rectangle {
 
         Repeater {
             model: 14; // just define the number you want, can be a variable too
-            delegate: Rectangle {
-                width: 200;
-                height: 30;
+            //delegate: Rectangle {
+            //    width: 200;
+            //    height: 30;
                 //color: "#6644FF";
                 //border { width: 1; color: "black" }
 				Text{
@@ -27,7 +27,7 @@ Rectangle {
 					font.pointSize:20;
 					color: "gray"
 				}
-            }
+            //}
         }
 	}
 

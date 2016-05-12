@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = item
+TARGET = swappage
 INCLUDEPATH += .
 
 #QT += core gui network opengl qml quick svg xml widgets dbus testlib declarative

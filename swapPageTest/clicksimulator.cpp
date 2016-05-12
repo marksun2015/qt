@@ -25,29 +25,19 @@ class Send_event : public QThread {
 
 void Send_event::run()
 {
-	int x=1, y=1;
+	int x=0, y=1;
 	int count=0;
-	int firsttime=1;
 
 	QTime time; 
 	time.start();
 	int time_Diff; 
 	float spendtime=0; 
-	
-	//press
-	QMouseEvent *eventfp = new QMouseEvent(QEvent::MouseButtonPress, QPointF(x,y), 
-				Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
-	QCoreApplication::postEvent(s_viewer, eventfp);
-	//release	
-	QMouseEvent *eventfr = new QMouseEvent(QEvent::MouseButtonRelease, QPointF(x,y), 
-				Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
-	QCoreApplication::postEvent(s_viewer, eventfr);
 
 	do{
-		//qDebug() << "run..." << qmlloaded;
 		if(qmlloaded == 1){
 			x=(count%3);
 			qmlloaded=0;	
+
 			//press
 			QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonPress, QPointF(x,y), 
 						Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
@@ -59,6 +49,7 @@ void Send_event::run()
 			
 			QThread::msleep(10);	
 			count++;
+			
 			if(count==Numbers){
 				time_Diff = time.elapsed();
 				qDebug() << "Category" << y << "time:" << time_Diff/1000.0;	
@@ -68,11 +59,11 @@ void Send_event::run()
 				y++;
 
 				time.start();
+
 				if(y>Category){
 					break;	
 				}
 			}
-			//qDebug() << "loop end..."; 
 		}
 	} while(count < Numbers);
 	
@@ -94,20 +85,11 @@ void Send_event::run()
 ClickSimulator::ClickSimulator(QObject *parent) : 
 QObject(parent)
 {
+
 }
 
 void ClickSimulator::click()
 {
-#if 0
-	//QApplication::setAttribute(Qt::AA_UseOpenGLES);                  
-	//theQmlEngine = new QQmlEngine(&app);
-
-	QQuickItem *root_window = new QQuickItem(m_viewer->rootObject());
-	root_window->setSize(QSizeF(1024, 600)); 
-	CPUrate cpurate(root_window);
-	m_viewer->engine()->rootContext()->setContextProperty("cpurate",&cpurate);
-#endif	
-
 	Send_event *thread = new Send_event();
 	thread->s_viewer=m_viewer;
 	thread->start();

@@ -1,6 +1,3 @@
-#include <string>
-
-#pragma warning(disable: 4512)
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QQmlContext>
@@ -25,13 +22,14 @@
 
 #include "clicksimulator.h"
 
-#pragma warning(default: 4512)
-
 QQmlEngine * theQmlEngine(0);
 QString r_totaltime;
 int qmlloaded=1;
 
-class CPUrate
+#define WIDTH 1024
+#define HEIGHT 600
+
+class Swappage
     : public QObject
 {
     Q_OBJECT
@@ -39,7 +37,7 @@ class CPUrate
 	Q_PROPERTY(int myPrty READ GetMyProperty WRITE SetMyProperty NOTIFY myPropertyValueChanged)
 
 public:
-    CPUrate(QQuickItem * root_window)
+    Swappage(QQuickItem * root_window)
         :root_window_(root_window)
     {
 
@@ -47,29 +45,18 @@ public:
 
 	QString totaltime() 
 	{
-		//qWarning() << "cpu usage:"<< r_cpu_usage;
 		return r_totaltime;
 	}	
 	
 	int GetMyProperty()
 	{
-		//qDebug() << "get";
+
 	}
 	void SetMyProperty(int value)
 	{
 		qmlloaded=value;
-		//qDebug() << "qmlloaded" << qmlloaded;
 		emit myPropertyValueChanged();
 	}
-
-#if 0
-	int cursory();
-
-	void setCursory(int y)
-	{
-	
-	}
-#endif
 
     std::vector<QQuickItem *> buttons_;
     QQuickItem * root_window_;
@@ -83,21 +70,22 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
 	QQuickView view;
+	
+	QQuickItem *root_window = new QQuickItem(view.rootObject());
+	root_window->setSize(QSizeF(WIDTH, HEIGHT)); 
+	Swappage swappage(root_window);
+	view.engine()->rootContext()->setContextProperty("swappage",&swappage);
+	
 	view.setSource(QUrl("mainscreen.qml"));
 	view.setSurfaceType(QSurface::OpenGLSurface);
-	view.rootObject()->setSize(QSizeF(1024, 600));
-
-	ClickSimulator *sim = new ClickSimulator();
-	sim->m_viewer=&view;
-	QTimer::singleShot(200, sim, SLOT(click()));
+	view.rootObject()->setSize(QSizeF(WIDTH, HEIGHT));
 
 	QApplication::setAttribute(Qt::AA_UseOpenGLES);                  
 	theQmlEngine = new QQmlEngine(&app);
 
-	QQuickItem *root_window = new QQuickItem(view.rootObject());
-	root_window->setSize(QSizeF(1024, 600)); 
-	CPUrate cpurate(root_window);
-	view.engine()->rootContext()->setContextProperty("cpurate",&cpurate);
+	ClickSimulator *sim = new ClickSimulator();
+	sim->m_viewer=&view;
+	QTimer::singleShot(200, sim, SLOT(click()));
 
 	//QTimer *timer=new QTimer();
 	//QObject::connect(timer,SIGNAL(timeout()),sim,SLOT(click())); 
