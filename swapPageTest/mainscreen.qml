@@ -85,7 +85,7 @@ Rectangle {
 		MouseArea {  
 			anchors.fill: parent  
 			onClicked: {
-				root.state = "pngpage1";  
+				root.state = "textpage1";  
 			}
 		}  
 	}  
@@ -135,7 +135,7 @@ Rectangle {
 		MouseArea {  
 			anchors.fill: parent  
 			onClicked: {
-				root.state = "textpage3";  
+				root.state = "pngpage3";  
 			}
 		}  
 	} 
