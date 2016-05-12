@@ -15,7 +15,7 @@ Rectangle {
         spacing: 5; // a simple layout do avoid overlapping
 
         Repeater {
-            model: 15; // just define the number you want, can be a variable too
+            model: 14; // just define the number you want, can be a variable too
             delegate: Rectangle {
                 width: 200;
                 height: 30;
