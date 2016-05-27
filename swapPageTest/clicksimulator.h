@@ -9,8 +9,6 @@ class ClickSimulator : public QObject
     Q_OBJECT
 public:
 	QQuickView* m_viewer; 
-	//int count;
-	//int wait;
     explicit ClickSimulator(QObject *parent = 0);
 
 public slots:

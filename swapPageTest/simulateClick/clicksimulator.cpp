@@ -1,4 +1,4 @@
-#include "clicksimulator.h"
+#include "../clicksimulator.h"
 
 #include <QMouseEvent>
 #include <QDebug>
@@ -7,11 +7,12 @@
 #include <QGraphicsScene>
 #include <QTest>
 #include <QKeyEvent>
+#include <QTouchEvent>
 
 #include <QThread>
 #include <QTime>
 
-#define Numbers 100 
+#define Numbers 200 
 #define Category 3 
 
 extern QString r_totaltime; 
@@ -38,15 +39,30 @@ void Send_event::run()
 			x=(count%3);
 			qmlloaded=0;	
 
+#if 1
 			//press
 			QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonPress, QPointF(x,y), 
 						Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
 			QCoreApplication::postEvent(s_viewer, event1);
+		
 			//release	
 			QMouseEvent *event2 = new QMouseEvent(QEvent::MouseButtonRelease, QPointF(x,y), 
 						Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
 			QCoreApplication::postEvent(s_viewer, event2);
-			
+	
+#endif		
+#if 0
+			//QTouchEvent * event1 = new QTouchEvent(t,QTouchEvent::TouchScreen,Qt::NoModifier,states,tpList);
+			QTouchEvent * event1 = new QTouchEvent(QEvent::TouchBegin, 
+												   QTouchEvent::TouchScreen, 
+												   Qt::NoModifier, 
+												   0,
+												   QList<QTouchEvent::TouchPoint>()
+												   << createTouchPoint(1, Qt::TouchPointPressed, QPointF(x,y), QPointF(x,y), QPointF(x,y))
+												   << createTouchPoint(2, Qt::TouchPointPressed, QPointF(x,y), QPointF(x,y), QPointF(x,y)));
+			QCoreApplication::postEvent(s_viewer, event1);
+#endif		
+				
 			QThread::msleep(10);	
 			count++;
 			
@@ -70,6 +86,7 @@ void Send_event::run()
 	QString tr_timeDiff = QString("%1").arg(spendtime);
 	r_totaltime = tr_timeDiff;
 	
+#if 1
 	//press
 	QMouseEvent *event3 = new QMouseEvent(QEvent::MouseButtonPress, QPointF(0,0), 
 				Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
@@ -79,6 +96,7 @@ void Send_event::run()
 	QMouseEvent *event4 = new QMouseEvent(QEvent::MouseButtonRelease, QPointF(0,0), 
 				Qt::MouseButton::LeftButton, Qt::MouseButton::LeftButton, Qt::KeyboardModifier::NoModifier);
 	QCoreApplication::postEvent(s_viewer, event4);
+#endif		
 
 }
 
