@@ -35,11 +35,11 @@ void Send_event::run()
 	float spendtime=0; 
 
 	do{
-		QThread::msleep(10);	
+		QThread::msleep(5);	
 		//qDebug() << "qmlloaded " << qmlloaded ;	
 		if(qmlloaded == 0){
 				time_Diff = time.elapsed();
-				qDebug() << "Category" << qmlloaded << "time:" << time_Diff/1000.0;	
+				qDebug() << "get time duration:" << time_Diff/1000.0;	
 				spendtime += time_Diff/1000.0;
 				time.start();
 		}

@@ -37,15 +37,18 @@ Rectangle {
 			binder.target = dialLoader.item; 
 			checkloaded=1;
 			
-			//console.log("swapnumber "+ swapnumber)
-			swappage.myPrty=swapnumber;
+			if(swapnumber==200){
+				console.log(Qt.formatDateTime(new Date(), "mm.ss.zzz"))
+			}
 
 			if(swapnumber==0){
-				swappage.myPrty=swapnumber;
+				console.log(Qt.formatDateTime(new Date(), "mm.ss.zzz"))
 				swapnumber=200;
 				category++;
 			}
+
 			swapnumber--;
+
 		}  
 	} 
 
@@ -53,6 +56,13 @@ Rectangle {
 		id: binder  
 		property: "speed"  
 		value: speed  
+	}  
+
+	MouseArea {  
+			anchors.fill: parent  
+			onClicked: {
+				rate.text = swappage.totaltime
+			}
 	}  
 
 	Rectangle {  
@@ -98,7 +108,6 @@ Rectangle {
 			anchors.fill: parent  
 			onClicked: {
 				root.state = "svgpage2";  
-				rate.text = swappage.totaltime
 			}
 		}  
 	}  
@@ -124,7 +133,6 @@ Rectangle {
 			anchors.fill: parent  
 			onClicked: {
 				root.state = "pngpage3";  
-				rate.text = swappage.totaltime
 			}
 		}  
 	} 
@@ -185,6 +193,7 @@ Rectangle {
 		  	PropertyChanges { target: page3Button; color: "green"; }  
 	  		PropertyChanges { target: dialLoader; source: "item_text3.qml"; }  
 		}    	
+   	
 	] 
 
 	Timer
@@ -224,11 +233,6 @@ Rectangle {
 						root.state = "pngpage3";  
 					}
 				}
-				
-				if((category==3)&&(testcount==601)){
-					swappage.myPrty=-1;
-				}
-
 			}
 		}
 	}

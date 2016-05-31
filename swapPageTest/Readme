@@ -1,0 +1,16 @@
+mainclick.qml  
+模擬按鍵切換頁測試  
+create thread 來發送mouse event給mainscreen.qml  
+thread 迴圈內會判斷是否完成load qml  
+如果load qml 結束,才會再接下去發送mouse event  
+
+mainauto.qml  
+自動換頁切換測試  
+透過C++ code迴圈,偵測不同類型換頁時間 
+timer會判斷是否完成load qml. 
+load完成後,接著載入下一個qml.
+
+mainpureauto.qml  
+單純qml自動切換頁測試  
+每一個類型結束後,列印出時間  
+duration 需要自行相減計算  
