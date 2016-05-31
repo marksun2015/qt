@@ -3,6 +3,6 @@ import QtQuick.Window 2.1
 
 Image {  
 	id: splashImage  
-	source: "mario.png"  
+	source: "qrc:///picture/penguin.svg"  
 } 
 

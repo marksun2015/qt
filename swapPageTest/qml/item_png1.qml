@@ -3,6 +3,6 @@ import QtQuick.Window 2.1
 
 Image {  
 	id: splashImage  
-	source: "simpson.svg"  
+	source: "qrc:///picture/sitara-am335x-chip.png"  
 } 
 

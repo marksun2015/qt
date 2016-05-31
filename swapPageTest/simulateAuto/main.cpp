@@ -20,7 +20,7 @@
 #include <QApplication>
 #include <QGraphicsScene>
 
-#include "../clicksimulator.h"
+#include "../include/clicksimulator.h"
 
 QQmlEngine * theQmlEngine(0);
 QString r_totaltime;
@@ -76,7 +76,8 @@ int main(int argc, char *argv[])
 	Swappage swappage(root_window);
 	view.engine()->rootContext()->setContextProperty("swappage",&swappage);
 	
-	view.setSource(QUrl("mainauto.qml"));
+	//view.setSource(QUrl("mainauto.qml"));
+	view.setSource(QString("qrc:/qml/mainauto.qml")); 
 	view.setSurfaceType(QSurface::OpenGLSurface);
 	view.rootObject()->setSize(QSizeF(WIDTH, HEIGHT));
 

@@ -3,6 +3,6 @@ import QtQuick.Window 2.1
 
 Image {  
 	id: splashImage  
-	source: "mushroom2.png"  
+	source: "qrc:///picture/simpson.svg"  
 } 
 

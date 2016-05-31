@@ -3,6 +3,6 @@ import QtQuick.Window 2.1
 
 Image {  
 	id: splashImage  
-	source: "ubuntu_cof.svg"  
+	source: "qrc:///picture/mushroom2.png"  
 } 
 

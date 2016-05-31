@@ -1,4 +1,4 @@
-#include "../clicksimulator.h"
+#include "../include/clicksimulator.h"
 
 #include <QMouseEvent>
 #include <QDebug>

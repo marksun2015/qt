@@ -146,55 +146,55 @@ Rectangle {
 		State {  
 			name: "pngpage1"  
 			PropertyChanges { target: page1Button; color: "green"; }  
-			PropertyChanges { target: dialLoader; source: "item_png1.qml"; }  
+			PropertyChanges { target: dialLoader; source: "qrc:///qml/item_png1.qml"; }  
 		},
 		
 		State {  
 			name: "pngpage2"  
 		  	PropertyChanges { target: page2Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_png2.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_png2.qml"; }  
 		},	
 		
 		State {  
 			name: "pngpage3"  
 		  	PropertyChanges { target: page3Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_png3.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_png3.qml"; }  
 		},   
 
 	 	State {  
 			name: "svgpage1"  
 		  	PropertyChanges { target: page1Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_svg1.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_svg1.qml"; }  
 		},
 	 	
 		State {  
 			name: "svgpage2"  
 		  	PropertyChanges { target: page2Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_svg2.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_svg2.qml"; }  
 		},
 	 	
 		State {  
 			name: "svgpage3"  
 		  	PropertyChanges { target: page3Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_svg3.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_svg3.qml"; }  
 		},
 
 		State {  
 			name: "textpage1"  
 		  	PropertyChanges { target: page1Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_text1.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_text1.qml"; }  
 		}, 	
 		
 		State {  
 			name: "textpage2"  
 		  	PropertyChanges { target: page2Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_text2.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_text2.qml"; }  
 		},  	
 		
 		State {  
 			name: "textpage3"  
 		  	PropertyChanges { target: page3Button; color: "green"; }  
-	  		PropertyChanges { target: dialLoader; source: "item_text3.qml"; }  
+	  		PropertyChanges { target: dialLoader; source: "qrc:///qml/item_text3.qml"; }  
 		}    	
    	
 	]  

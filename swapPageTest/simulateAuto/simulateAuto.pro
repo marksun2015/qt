@@ -17,5 +17,6 @@ CONFIG += c++11
 CONFIG += static
 
 # Input
-HEADERS += ../clicksimulator.h
+HEADERS += ../include/clicksimulator.h
 SOURCES += main.cpp autosimulator.cpp
+RESOURCES += ../swappage.qrc
