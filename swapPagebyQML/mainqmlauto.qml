@@ -9,15 +9,9 @@ Rectangle {
 		property int checkloaded: 0
 		property int swapnumber: 200
 		property int speed: 0  
+		property var last_timer: 0  
+		property var currt_timer: 0  
 
-
-	SequentialAnimation {  
-			running: true  
-			loops: Animation.Infinite  
-
-			NumberAnimation { target: root; property: "speed"; to: 145; easing.type: Easing.InOutQuad; duration: 4000; }  
-		 	NumberAnimation { target: root; property: "speed"; to: 10; easing.type: Easing.InOutQuad; duration: 2000; }  
-	} 
 
 	Text{
 		id: rate   
@@ -34,29 +28,22 @@ Rectangle {
 		anchors.bottom: page1Button.top  
 		
 		onLoaded: {  
-			binder.target = dialLoader.item; 
 			checkloaded=1;
 			
-			if(swapnumber==200){
-				console.log(Qt.formatDateTime(new Date(), "mm.ss.zzz"))
-			}
-
 			if(swapnumber==0){
-				console.log(Qt.formatDateTime(new Date(), "mm.ss.zzz"))
+				currt_timer = new Date().getTime(); 
+				console.log((currt_timer - last_timer) + ' msec');
 				swapnumber=200;
 				category++;
 			}
+
+			if(swapnumber==200)
+				last_timer = new Date().getTime(); 
 
 			swapnumber--;
 
 		}  
 	} 
-
-	Binding {  
-		id: binder  
-		property: "speed"  
-		value: speed  
-	}  
 
 	MouseArea {  
 			anchors.fill: parent  
