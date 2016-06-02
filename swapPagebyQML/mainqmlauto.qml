@@ -9,15 +9,55 @@ Rectangle {
 		property int checkloaded: 0
 		property int swapnumber: 200
 		property int speed: 0  
+		property var total_time: 0  
+		property var category_time: 0  
 		property var last_timer: 0  
 		property var currt_timer: 0  
 
+	Column {	
+		Text{
+			id: totaltime   
+			text:"Total Time"; 
+			color: "red"
+			font.pointSize:24;  
+		}
 
-	Text{
-		id: rate   
-		text:"Total Time"; 
-		color: "red"
-		font.pointSize:36;  
+		Text{
+			id: texttime   
+			text:"text Time"; 
+			color: "red"
+			font.pointSize:24;  
+		}
+		
+		Text{
+			id: svgtime   
+			text:"svg Time"; 
+			color: "red"
+			font.pointSize:24;  
+		}
+		
+		Text{
+			id: pngtime   
+			text:"png Time"; 
+			color: "red"
+			font.pointSize:24;  
+		}
+	}
+
+	function set_time(c){	
+		currt_timer = new Date().getTime(); 
+		console.log((currt_timer - last_timer) + ' msec');
+		category_time = (currt_timer-last_timer)/1000;
+
+		if(category==0){
+			texttime.text="text: " + category_time.toFixed(3) + " s";
+		}else if(category==1){
+			svgtime.text="svg: " + category_time.toFixed(3) + " s";
+		}else if(category==2){
+			pngtime.text="png: " + category_time.toFixed(3) + " s";
+		}
+		total_time += category_time;
+		totaltime.text= "total: "+ total_time.toFixed(3) + " s";
 	}
 
 	Loader {  
@@ -31,26 +71,18 @@ Rectangle {
 			checkloaded=1;
 			
 			if(swapnumber==0){
-				currt_timer = new Date().getTime(); 
-				console.log((currt_timer - last_timer) + ' msec');
+				set_time(category);
 				swapnumber=200;
 				category++;
 			}
 
-			if(swapnumber==200)
+			if(swapnumber==200){
 				last_timer = new Date().getTime(); 
-
+			}
 			swapnumber--;
 
 		}  
 	} 
-
-	MouseArea {  
-			anchors.fill: parent  
-			onClicked: {
-				rate.text = swappage.totaltime
-			}
-	}  
 
 	Rectangle {  
 		id: page1Button  
@@ -94,7 +126,7 @@ Rectangle {
 		MouseArea {  
 			anchors.fill: parent  
 			onClicked: {
-				root.state = "svgpage2";  
+				root.state = "svgpage2"; 
 			}
 		}  
 	}  
