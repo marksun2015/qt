@@ -6,6 +6,6 @@ LIBS += -lsqlite3
 LIBS += -lcurl
 LIBS += -ldl
 
-HEADERS += ./currencymodel.h
+HEADERS += ./citymodel.h
 SOURCES += ./main.cpp \
-			./currencymodel.cpp
+		   ./citymodel.cpp
