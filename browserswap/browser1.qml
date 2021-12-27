@@ -33,19 +33,19 @@ Rectangle {
     BrowserView {
         id: browser
         x:10
-        y:5
-        width:700
-        height:500
+        y:10
+        width:1700
+        height:800
     }
 
     Component.onCompleted: {
         console.log("onCompleted")
-        browser.url = "https://www.webkitgtk.org"
+        browser.url = "https://tw.yahoo.com"
         browser.home = "https://www.mobile01.com"
         browser.show()
     }
     
     Component.onDestruction: {
-	console.log("Destruction Beginning!")
+        console.log("Destruction Beginning!")
     }
 }

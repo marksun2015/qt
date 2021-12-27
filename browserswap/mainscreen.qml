@@ -17,7 +17,7 @@ Rectangle {
 
     Timer {
             id: timer_button;
-            interval: 1000;
+            interval: 5000;
             repeat: true
             running: false
             triggeredOnStart: true
@@ -40,12 +40,12 @@ Rectangle {
         anchors.left: parent.left  
         anchors.bottom: parent.bottom  
         color: "gray"  
-        width: parent.width/2  
-        height: 100  
+        width: parent.width/4  
+        height: 80  
 
         Text {  
             anchors.centerIn: parent  
-                text: "Analog"  
+            text: "Browser1"  
         }  
 
         MouseArea {  
@@ -55,19 +55,61 @@ Rectangle {
     }  
 
     Rectangle {  
-        id: browser2Button  
-
-        anchors.right: parent.right  
+        id: startButton
+        anchors.left: browser1Button.right  
         anchors.bottom: parent.bottom  
+        color: "green"  
 
-        color: "gray"  
-
-        width: parent.width/2  
-        height: 100  
+        width: parent.width/4  
+        height: 80  
 
         Text {  
             anchors.centerIn: parent  
-                text: "Digital"  
+            text: "Sart"  
+        }  
+
+        MouseArea {  
+            anchors.fill: parent  
+            onClicked: {  
+       		    timer_button.start();
+	        }
+        }  
+    }
+ 
+    Rectangle {  
+        id: stopButton
+        anchors.right: browser2Button.left  
+        anchors.bottom: parent.bottom  
+        color: "red"  
+
+        width: parent.width/4  
+        height: 80  
+
+        Text {  
+            anchors.centerIn: parent  
+            text: "Stop"  
+        }  
+
+        MouseArea {  
+            anchors.fill: parent  
+            onClicked: {  
+       		    timer_button.stop();
+	        }
+        }  
+    } 
+
+    Rectangle {  
+        id: browser2Button  
+        anchors.right: parent.right  
+        anchors.bottom: parent.bottom  
+        color: "gray"  
+
+        width: parent.width/4  
+        height: 80
+
+        Text {  
+            anchors.centerIn: parent  
+            text: "Browser2"  
         }  
 
         MouseArea {  
@@ -80,13 +122,13 @@ Rectangle {
     states: [  
         State {  
             name: "browser1"  
-            PropertyChanges { target: browser1Button; color: "green"; }  
+            PropertyChanges { target: browser1Button; color: "blue"; }  
             PropertyChanges { target: dialLoader; source: "browser1.qml"; }  
         },
 
         State {  
-        name: "browser2"  
-            PropertyChanges { target: browser2Button; color: "green"; }  
+            name: "browser2"  
+            PropertyChanges { target: browser2Button; color: "blue"; }  
             PropertyChanges { target: dialLoader; source: "browser2.qml"; }  
         }  
     ]  
